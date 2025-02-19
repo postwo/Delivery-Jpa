@@ -1,19 +1,47 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' // 버전 명시 안하는 이유는 부모한테 받아오기 때문이다
+    id 'io.spring.dependency-management'
 }
 
-group = 'com.delivery'
+group = 'com.delivery' // 이게 패키지 메인이다
 version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations { //lombok을 사용하기 위해 추가
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 test {
     useJUnitPlatform()
+}
+
+//bootJar,jar 생성 x
+// 스프링 부트를 사용하게 되면 부트 jar라는 파일로 만들어진다 그 파일이 더 이상 생성되지 않도록 작성
+// 왜냐하면 DB는 소스 코드를 가지고 있지 않기 때문에 빌드를 해도 jar파일이 떨어지지 않기 때문이다
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
 }
