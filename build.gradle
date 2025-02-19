@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.4.2'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 allprojects { //나의 자녀 모듈들은 다 나를 따르라는 의미이다
@@ -7,5 +9,15 @@ allprojects { //나의 자녀 모듈들은 다 나를 따르라는 의미이다
     repositories { //나의 하위에 있는 모듈들은 다 maven 을 쓰겠다는 의미이다
         mavenCentral()
     }
+}
 
+//bootJar,jar 생성 x
+// 스프링 부트를 사용하게 되면 부트 jar라는 파일로 만들어진다 그 파일이 더 이상 생성되지 않도록 작성
+// 왜냐하면 부모 코드는 소스 코드를 가지고 있지 않기 때문에 빌드를 해도 jar파일이 떨어지지 않기 때문이다
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
 }

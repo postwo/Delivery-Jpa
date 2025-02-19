@@ -1,18 +1,37 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' // 버전 명시 안하는 이유는 부모한테 받아오기 때문이다
+    id 'io.spring.dependency-management'
 }
 
-group = 'com.delivery'
+group = 'com.delivery' // 이게 패키지 메인이다
 version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations { //lombok을 사용하기 위해 추가
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
     implementation project(':db') // db 모듈을 가져다 쓴다는 의미이다
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
 }
 
 test {
