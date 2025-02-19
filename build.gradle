@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+allprojects { //나의 자녀 모듈들은 다 나를 따르라는 의미이다
+
+    repositories { //나의 하위에 있는 모듈들은 다 maven 을 쓰겠다는 의미이다
+        mavenCentral()
+    }
+
+}

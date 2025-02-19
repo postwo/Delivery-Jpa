@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.delivery'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':db') // db 모듈을 가져다 쓴다는 의미이다
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
