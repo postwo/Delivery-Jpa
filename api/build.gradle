@@ -30,6 +30,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //실질적으로 japRepository는 api모듈에서는 모르기 때문에 라이브러리를 추가해줘야 한다
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
     implementation project(':db') // db 모듈을 가져다 쓴다는 의미이다
 
 }
