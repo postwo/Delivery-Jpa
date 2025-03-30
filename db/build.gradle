@@ -42,6 +42,7 @@ bootJar {
     enabled = false
 }
 
+//DB는 외부(라이브러리)에서 참조할 일반 JAR 파일(jar 태스크로 생성되는 파일)은 필요하기 때문에 true 로 설정한다
 jar {
-    enabled = false
+    enabled = true
 }
