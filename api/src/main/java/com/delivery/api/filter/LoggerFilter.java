@@ -10,10 +10,11 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
 
+//클라이언트에서 보낸 요청 데이터와 서버가 클라이언트에게 보낸 응답 데이터를 로그로 기록하는 필터
 @Slf4j
 @Component
 public class LoggerFilter implements Filter {
-    /*  이 필터는 클라이언트가 보낸 요청과 서버가 응답한 내용을 로그로 기록하는 기능을 수행합니다. 구체적으로, 이 필터는 다음과 같은 작업을 합니다:
+     /* 이 필터는 클라이언트가 보낸 요청과 서버가 응답한 내용을 로그로 기록하는 기능을 수행합니다. 구체적으로, 이 필터는 다음과 같은 작업을 합니다:
 
         클라이언트 요청에 대한 정보 로그:
         헤더 정보: 클라이언트가 요청을 보낼 때 포함한 헤더 정보를 로그로 기록합니다.
@@ -24,7 +25,7 @@ public class LoggerFilter implements Filter {
         헤더 정보: 서버가 클라이언트에게 응답할 때 설정한 응답 헤더 정보를 로그로 기록합니다.
         본문 정보: 서버가 클라이언트에게 응답 본문으로 보내는 내용을 로그로 기록합니다.
         응답 내용의 복사: res.copyBodyToResponse()를 호출하여 응답 본문을 클라이언트에게 실제로 전달합니다.
-        * */
+        */
 
     // 캐싱(Caching)이란 데이터를 임시로 저장해서 이후에 같은 데이터에 접근할 때 더 빠르게 처리할 수 있도록 하는 기술입니다. 즉, 한 번 저장한 데이터를 재사용함으로써 성능을 높이는 방법이에요.
 
