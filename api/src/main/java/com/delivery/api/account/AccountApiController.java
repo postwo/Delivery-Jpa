@@ -2,6 +2,8 @@ package com.delivery.api.account;
 
 import com.delivery.api.account.model.AccountMeResponse;
 import com.delivery.api.common.api.Api;
+import com.delivery.api.common.error.ErrorCode;
+import com.delivery.api.common.exception.ApiException;
 import com.delivery.db.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,7 @@ public class AccountApiController {
     private final AccountRepository accountRepository;
 
     @GetMapping("/me")
-    public Api<AccountMeResponse> me() { // 이서비스는 항상성공만 존재 실패는 존재 하지 않는다라고 생각하기 
+    public Api<AccountMeResponse> me() { // 이서비스는 항상성공만 존재 실패는 존재 하지 않는다라고 생각하기
 
         var response = AccountMeResponse.builder()
                 .name("홍길동")
@@ -28,7 +30,13 @@ public class AccountApiController {
 
         var str = "안녕하세요";
         var age =0;
-        Integer.parseInt(str); // 예외가 발생한다고 try catch로 굳이 잡을 필요없다 그냥 예외는 터지게 납둔다 그리고 여기서 발생한 에러를 GlobalExceptionHandler 에서 캐치해서 처리해주면 된다
+        try {
+            Integer.parseInt(str);
+        } catch (Exception e) {
+            throw new ApiException(ErrorCode.SERVER_ERROR , e , "사용자 me 호출시 에러 발생");
+        }
+
+
 
         return Api.OK(response);
     }
