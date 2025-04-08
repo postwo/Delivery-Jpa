@@ -1,5 +1,6 @@
 package com.delivery.api.common.api;
 
+import com.delivery.api.common.error.ErrorCodeIfs;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,32 @@ public class Api<T> {
         var api = new Api<T>();
         api.result = Result.OK();
         api.body = data;
+        return api;
+    }
+
+    //ERROR는 body에 넣을 내용이 없다 = error 가 발생했을 때는 body에 세팅할게 없다
+    //아무거나 담을수 있도록 Object 사용, 제네릭의 경고를 안받기 위해 object를 사용
+    public static Api<Object> ERROR(Result result){
+        var api = new Api<Object>();
+        api.result = result;
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs){
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs);
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, Throwable tx){
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs, tx);
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, String description){
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs, description);
         return api;
     }
 
