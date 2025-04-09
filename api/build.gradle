@@ -33,7 +33,8 @@ dependencies {
     //swagger ui == 스프링 3.0부터는 이 의존성을 주입해야 동작을 한다
     //https://colabear754.tistory.com/130 여기 블로그 참고 하면된다 == spring boot 버전마다 의존성 주입방법이 다르다
     //접속경로 http://localhost:8080/swagger-ui/index.html
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
 
     //swagger ui == 이방식은 스프링부트 2 버전만 가능
     //implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
