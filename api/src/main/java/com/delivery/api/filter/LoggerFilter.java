@@ -38,6 +38,7 @@ public class LoggerFilter implements Filter {
         var res = new ContentCachingResponseWrapper((HttpServletResponse) servletResponse);
 
         // 요청 초기 URI 로그 출력 (filterChain 호출 전이라 먼저 로그로 찍힘)
+        // ex)INFO 12572 --- [nio-8080-exec-3] com.delivery.api.filter.LoggerFilter     : INIT URI/api/account/me
         log.info("INIT URI{}",req.getRequestURI());
 
         // 필터 체인을 통해 다음 필터로 이동 (여기까지 필터를 거쳐간 후 아래 코드가 실행됨)
@@ -82,6 +83,7 @@ public class LoggerFilter implements Filter {
         // 응답 바디 내용을 읽어서 문자열로 변환
         var responseBody = new String(res.getContentAsByteArray());
 
+        // 이거는 dofilter 끝나고 나가기전에 찍힌다
         log.info("<<<<< uri: {}, method: {} , header :{} , body : {}",uri,method,responseHeaderValues.toString(),responseBody);
 
         // ContentCachingResponseWrapper가 응답 데이터를 캐싱하기 때문에 이를 실제 클라이언트에 전달
