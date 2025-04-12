@@ -13,3 +13,41 @@ equals와 hashCode를 구현하지 않으면, 객체는 기본적으로 메모�
 1.  com.delivery.db 를 똑같이 com.delivery.api라고 맞춰주면 해결할수 있다 
 2.  com.delivery.db 에 하위에 있는 얘들도 bean으로 고려할수 있도록 등록해주는 방법이다 
 = 이거는 가져다 사용할 패키지에서 config(여기서는 jpaconfig로 셍성)를 하나 생성하다 거기다가 scan을 작성하면 된다 
+
+# swagger 접속경로
+접속경로 http://localhost:8080/swagger-ui/index.html
+
+# shift 두번 누르면 검색(class, method 등) 가능하다
+
+# part2 ch03 은 다시 한번들어서 정리하기 (중요)
+
+# 에러 모음
+
+## swagger 에러
+Caused by: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+
+Fetch error
+response status is 500 /v3/api-docs
+
+swagger 버전이 스프링버전에 맞지않아서 발생 
+
+참고
+https://blog.everdu.com/558
+https://lucas-owner.tistory.com/80
+
+
+# 더미 데이터
+- 회원가입
+{
+"result": {
+"result_code": 0,
+"result_message": "string",
+"result_description": "string"
+},
+"body": {
+"name": "스티브",
+"email": "steave@email.com",
+"address": "서울시 강남구",
+"password": "1234"
+}
+}
