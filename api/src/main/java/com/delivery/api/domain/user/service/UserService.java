@@ -1,6 +1,7 @@
 package com.delivery.api.domain.user.service;
 
 import com.delivery.api.common.error.ErrorCode;
+import com.delivery.api.common.error.UserErrorCode;
 import com.delivery.api.common.exception.ApiException;
 import com.delivery.db.user.UserEntity;
 import com.delivery.db.user.UserRepository;
@@ -20,6 +21,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    //회원가입
     public UserEntity register(UserEntity userEntity){
         return Optional.ofNullable(userEntity)
                 .map(it ->{
@@ -28,5 +30,21 @@ public class UserService {
                     return userRepository.save(userEntity);
                 })
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT, "User Entity Null"));
+    }
+
+    //로그인
+    public UserEntity login(String email ,String password){
+      var entity = getUserWithThrow(email, password);
+      return entity;
+    }
+
+    //등록된 사용자가 있는지 체크
+    public UserEntity getUserWithThrow(
+            String email
+            ,String password
+    ){
+        return userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc
+                (email, password, UserStatus.REGISTERED)
+                .orElseThrow(()-> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 }
