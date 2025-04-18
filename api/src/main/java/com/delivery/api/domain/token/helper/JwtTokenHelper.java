@@ -97,7 +97,7 @@ public class JwtTokenHelper implements TokenHelperIfs {
 
             if(e instanceof SignatureException){
                 // 토큰이 유효하지 않을때
-                throw new ApiException(TokenErrorCode.INVALID_TOKEN, e); //e = 예외를 뜻한다 
+                throw new ApiException(TokenErrorCode.INVALID_TOKEN, e); //e = 예외를 뜻한다
             }
             else if(e instanceof ExpiredJwtException){
                 //  만료된 토큰
