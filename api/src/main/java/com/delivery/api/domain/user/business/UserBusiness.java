@@ -1,6 +1,8 @@
 package com.delivery.api.domain.user.business;
 
 import com.delivery.api.common.annotation.Business;
+import com.delivery.api.domain.token.business.TokenBusiness;
+import com.delivery.api.domain.token.controller.model.TokenResponse;
 import com.delivery.api.domain.user.controller.model.UserLoginRequest;
 import com.delivery.api.domain.user.controller.model.UserRegisterRequest;
 import com.delivery.api.domain.user.controller.model.UserResponse;
@@ -15,6 +17,8 @@ public class UserBusiness { //흐름  controller -> business -> service -> repos
 
     private final UserService userService;
     private final UserConverter userConverter;
+
+    private final TokenBusiness tokenBusiness;
 
     //회원 가입
     /*
@@ -39,17 +43,15 @@ public class UserBusiness { //흐름  controller -> business -> service -> repos
     }
 
     //로그인
-    /*
-    1. email 를 가지고 사용자 체크
-    2. user entity 로그인 확인
-    3. token 생성
-    4. token response
-    */
-    public UserResponse login(@Valid UserLoginRequest request) {
+    /**
+     * 1. email, password 를 가지고 사용자 체크
+     * 2. user entity 로그인 확인
+     * 3. token 생성
+     * 4. token response
+     */
+    public TokenResponse login(@Valid UserLoginRequest request) {
         var userEntity = userService.login(request.getEmail(), request.getPassword());
-        // 사용자가 없으면 throw
-
-        // todo 토큰 생성 로직으로 변경하기
-        return userConverter.toResponse(userEntity);
+        var tokenResponse = tokenBusiness.issueToken(userEntity);
+        return tokenResponse;
     }
 }
