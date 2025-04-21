@@ -34,6 +34,7 @@ public class TokenService {
         return tokenHelperIfs.issueRefreshToken(data); // 토큰을 만들어서 리턴
     }
 
+    // 토큰 검증
     public Long validationToken(String token){
         var map = tokenHelperIfs.validationTokenWithThrow(token); // 토큰 검증
 

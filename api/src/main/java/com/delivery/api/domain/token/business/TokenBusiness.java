@@ -39,6 +39,7 @@ public class TokenBusiness {
                 );
     }
 
+    // 토큰 검증
     public Long validationAccessToken(String accessToken){
         var userId = tokenService.validationToken(accessToken);
         return userId;

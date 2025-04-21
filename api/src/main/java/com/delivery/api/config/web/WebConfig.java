@@ -1,8 +1,10 @@
 package com.delivery.api.config.web;
 
 import com.delivery.api.interceptor.AuthorizationInterceptor;
+import com.delivery.api.resolver.UserSessionResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer { //여기서 interceptor를 
 
     //이게 주입 받을 수 있는 이유는 컴포넌트여서 그런다
     private final AuthorizationInterceptor authorizationInterceptor;
+    private final UserSessionResolver userSessionResolver;
 
     private List<String> OPEN_API = List.of(
             "/open-api/**"
@@ -40,5 +43,10 @@ public class WebConfig implements WebMvcConfigurer { //여기서 interceptor를 
                 .excludePathPatterns(SWAGGER)
         ;
 
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(userSessionResolver); // 내가 커스텀한 리졸버 등록
     }
 }

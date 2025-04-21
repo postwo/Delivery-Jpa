@@ -54,4 +54,10 @@ public class UserBusiness { //흐름  controller -> business -> service -> repos
         var tokenResponse = tokenBusiness.issueToken(userEntity);
         return tokenResponse;
     }
+
+    public UserResponse me(Long userId) {
+        var userEntity = userService.getUserWithThrow(userId);
+        var response = userConverter.toResponse(userEntity);
+        return response;
+    }
 }

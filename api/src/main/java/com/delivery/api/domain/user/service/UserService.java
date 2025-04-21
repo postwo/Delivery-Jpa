@@ -47,4 +47,13 @@ public class UserService {
                 (email, password, UserStatus.REGISTERED)
                 .orElseThrow(()-> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
+
+    //로그인한 사용자 정보 조회
+    public UserEntity getUserWithThrow(
+           Long userId
+    ){
+        return userRepository.findFirstByIdAndStatusOrderByIdDesc(
+                        userId, UserStatus.REGISTERED)
+                .orElseThrow(()-> new ApiException(UserErrorCode.USER_NOT_FOUND));
+    }
 }
