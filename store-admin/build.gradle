@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' // 버전 명시 안하는 이유는 부모한테 받아오기 때문이다
+    id 'io.spring.dependency-management'
+}
+
+group = 'com.delivery' // 이게 패키지 메인이다
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations { //lombok을 사용하기 위해 추가
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //swagger ui == 스프링 3.0부터는 이 의존성을 주입해야 동작을 한다
+    //https://colabear754.tistory.com/130 여기 블로그 참고 하면된다 == spring boot 버전마다 의존성 주입방법이 다르다
+    //접속경로 http://localhost:8080/swagger-ui/index.html
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+
+    //swagger ui == 이방식은 스프링부트 2 버전만 가능
+    //implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
+
+    //실질적으로 japRepository는 api모듈에서는 모르기 때문에 라이브러리를 추가해줘야 한다
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation project(':db') // db 모듈을 가져다 쓴다는 의미이다
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+// 스프링부트 프로젝트는 bootJar 태스크로 실행 가능한 JAR 파일을 생성한다.
+// API 모듈에서는 이 bootJar만 필요하다. (스프링부트를 실행시켜야 하기 때문에)
+bootJar {
+    enabled = true
+}
+
+// 외부(라이브러리)에서 참조할 일반 JAR 파일(jar 태스크로 생성되는 파일)은 필요 없다.
+// 따라서 API 모듈에서는 jar 태스크를 비활성화하여 불필요한 파일 생성을 방지한다.
+jar {
+    enabled = false
+}
