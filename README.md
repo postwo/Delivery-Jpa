@@ -101,5 +101,5 @@ https://ziszini.tistory.com/120
 //List 타입은 결과가 없을 때 null이 아니라 빈 리스트를 반환합니다.
 
 
-# erd 
-[delivery erd.mwb](..%2F..%2FUsers%2Fcodo7%2FOneDrive%2F%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4%2Fdelivery%20erd.mwb)
+# erd
+![img.png](img.png)
