@@ -51,3 +51,55 @@ https://lucas-owner.tistory.com/80
 "password": "1234"
 }
 }
+
+- 로그인
+   "email": "steave@email.com",
+    "password": "1234"
+
+- 가게 가입
+{
+  "result": {
+  "result_code": 0,
+  "result_message": "string",
+  "result_description": "string"
+  },
+  "body": {
+  "name": "스타개미 강남정 ",
+  "address": "서울시 강남구",
+  "store_category": "COFFEE_TEA",
+  "thumbnail_url": "https://i.namu.wiki/i/YMSBcQyJQwDWjAqjhlY_tKIJARbbsAnpzUjwsmjN4rCjAydHO4dZOgfQcngol-7HpbtbzsFovd7N3skC90wr10cUu0kqsbojbq30iH8rarzO3ChnHZHck7yZViAGKtk8LOaboGu_SeTYTTqGdwkzSw.webp",
+  "minimum_amount": 6000,
+  "minimum_delivery_amount": 3000,
+  "phone_number": "024928102"
+  }
+  }
+
+
+# RequestParam ,  Requestbody
+@RequestBody는 HTTP 요청의 본문(body) 전체를 객체로 받아오고, JSON이나 XML 같은 덩어리 데이터를 처리하는 데 유용합니다. 
+반면에, @RequestParam은 URL 쿼리나 폼 데이터를 통해 하나하나의 값을 개별적으로 받아오는 경우에 사용됩니다.
+
+요약
+@RequestBody:
+
+데이터 전체를 객체로 변환.
+
+예: {"name": "Alice", "age": 25} 같은 JSON 데이터를 매핑.
+
+@RequestParam:
+
+개별 파라미터를 받아 처리.
+
+예: ?name=Alice&age=25 같은 쿼리 파라미터를 매핑.
+
+
+# mysql readonly 해제 방법
+https://ziszini.tistory.com/120
+
+
+# list null
+//List 타입은 결과가 없을 때 null이 아니라 빈 리스트를 반환합니다.
+
+
+# erd 
+[delivery erd.mwb](..%2F..%2FUsers%2Fcodo7%2FOneDrive%2F%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4%2Fdelivery%20erd.mwb)
