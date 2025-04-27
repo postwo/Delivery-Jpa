@@ -7,7 +7,9 @@ import com.delivery.api.domain.storemenu.controller.model.StoreMenuRegisterReque
 import com.delivery.api.domain.storemenu.controller.model.StoreMenuResponse;
 import com.delivery.db.storemenu.StoreMenuEntity;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Converter
 public class StoreMenuConverter { //dto -> entity
@@ -50,5 +52,13 @@ public class StoreMenuConverter { //dto -> entity
                 .orElseThrow(()-> new ApiException(ErrorCode.NULL_POINT));
     }
 
+
+    public List<StoreMenuResponse> toResponse(
+            List<StoreMenuEntity> list
+    ){
+        return list.stream()
+                .map(it -> toResponse(it)) // toResponse는 바로 위에있는 메서드를 뜻한다
+                .collect(Collectors.toList());
+    }
 
 }
