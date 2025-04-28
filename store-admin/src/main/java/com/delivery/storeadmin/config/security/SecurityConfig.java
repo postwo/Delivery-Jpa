@@ -26,7 +26,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf().disable() // 나중에 csrf 수정하기 지금은 사용가능해서 사용중
+                .csrf(csrf -> csrf.disable()) // 변경된 방식 적용
                 .authorizeHttpRequests(it ->{
                     it
                             .requestMatchers(
