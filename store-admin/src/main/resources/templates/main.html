@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>MAIN PAGE</h1>
+
+<!-- authentication은 스프링시큐리티가 넣어주는거기 때문에 그냥 쓰면 된다  -->
+<!-- authentication은 userdetails에있는 인터페이스 요소를 가져다 사용할수 있다 -->
+<!-- principal은 springsecurity에서 관리하는 객체이다 -->
+<h1 th:text="${#authentication.name}"></h1> </br>
+<h1 th:text="${#authentication.principal.storeName}"></h1> </br>
+<h1 th:text="${#authentication.principal.role}"></h1> </br>
+
+<h1 th:text="${#authentication}"></h1> </br>
+
+
+</body>
+</html>
