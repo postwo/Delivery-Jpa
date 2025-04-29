@@ -1,4 +1,4 @@
-package com.delivery.storeadmin.domain.presentation;
+package com.delivery.storeadmin.presentation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
