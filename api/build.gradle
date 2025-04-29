@@ -51,6 +51,8 @@ dependencies {
 
     implementation project(':db') // db 모듈을 가져다 쓴다는 의미이다
 
+    implementation project(':common') // common 모듈을 가져다 쓴다는 의미이다
+
 }
 
 test {

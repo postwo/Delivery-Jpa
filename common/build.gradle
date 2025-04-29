@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.delivery'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories { //lombok을 사용하기 위해 추가
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//bootJar는 필요가 없다 왜냐하면 스프링프로젝트로 안 할거기 때문이다
+
+//common은 외부(라이브러리)에서 참조할 일반 JAR 파일(jar 태스크로 생성되는 파일)은 필요하기 때문에 true 로 설정한다
+jar {
+    enabled = true
+}
