@@ -11,8 +11,14 @@ repositories { //lombok을 사용하기 위해 추가
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    // Execution failed for task ':common:compileJava'.
+    //> Could not resolve all files for configuration ':common:compileClasspath'.
+    //   > Could not find org.projectlombok:lombok:.
+    //     Required by:
+    //         project :common
+    // 위 에러는 버전을 api,db는 gradle에 lobok 버전을 명시 안했지만 여기서는 gradle에서 버전을 보고 버전을 명시해주면 해결된다
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
 
     //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
