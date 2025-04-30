@@ -13,6 +13,7 @@ public class UserOrderConsumer {
 
 
     // RabbitListener = 어떤 큐로부터 데이터를 받아올건지 정한다
+    // userOrderMessage 객체는 큐에서 가져온 데이터를 담는 역할을 한다
     @RabbitListener(queues = "delivery.queue")
     public void userOrderConsumer(
             UserOrderMessage userOrderMessage
