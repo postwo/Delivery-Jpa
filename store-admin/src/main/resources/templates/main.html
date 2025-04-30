@@ -18,4 +18,22 @@
 
 
 </body>
+
+<script>
+    const url = "http://localhost:8081/api/sse/connect";  //접속주소
+    const eventSource =new EventSource(url);               // sse 연결
+
+    // 연결이 되면 여기로 응답
+    eventSource.onopen = event =>{
+        console.log("sse connection");
+        console.log(event);
+    }
+
+    // 서버로 부터 받은 데이터는 여기로 들어온다
+    eventSource.onmessage = event =>{
+        console.log("receive data : "+event.data)
+    }
+
+</script>
+
 </html>
