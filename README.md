@@ -1,3 +1,5 @@
+# SSE 강의 부분 다시 보고 그쪽만 코드 수정하기 
+
 # equals and hashCode = 객체비교 할때 사용 
 equals와 hashCode를 구현하지 않으면, 객체는 기본적으로 메모리 주소를 기준으로 비교합니다.
 즉, new 키워드를 사용해 객체를 생성하면 항상 새로운 메모리 주소가 할당되므로 equals를
@@ -102,4 +104,20 @@ https://ziszini.tistory.com/120
 
 
 # erd
-![img.png](img.png)
+![img_3.png](img_3.png)
+
+
+# business 어노테이션을 만들지 않고 그냥 business클래스에다가 @Service를 붙여도 된다 
+
+
+# 가게 유저 등록
+{
+"storeName": "스타개미 강남정",
+"email": "steve@gmail.com",
+"password": "1234",
+"role": "MASTER"
+}
+
+# 에러 
+org.springframework.security.authentication.InternalAuthenticationServiceException: No value present 
+-> 이게 뜨면 db에 있는 데이터값과 내가 입력한 값이 일치 한지 확인해보기 
