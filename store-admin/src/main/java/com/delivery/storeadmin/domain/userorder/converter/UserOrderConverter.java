@@ -1,6 +1,7 @@
 package com.delivery.storeadmin.domain.userorder.converter;
 
 import com.delivery.db.userorder.UserOrderEntity;
+import com.delivery.storeadmin.domain.userorder.controller.model.UserOrderResponse;
 import org.springframework.stereotype.Service;
 
 @Service

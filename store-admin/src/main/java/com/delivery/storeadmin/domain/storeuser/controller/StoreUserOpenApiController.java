@@ -1,8 +1,8 @@
-package com.delivery.storeadmin.domain.user.controller;
+package com.delivery.storeadmin.domain.storeuser.controller;
 
-import com.delivery.storeadmin.domain.user.business.StoreUserBusiness;
-import com.delivery.storeadmin.domain.user.controller.model.StoreUserRegisterRequest;
-import com.delivery.storeadmin.domain.user.controller.model.StoreUserResponse;
+import com.delivery.storeadmin.domain.storeuser.business.StoreUserBusiness;
+import com.delivery.storeadmin.domain.storeuser.controller.model.StoreUserRegisterRequest;
+import com.delivery.storeadmin.domain.storeuser.controller.model.StoreUserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

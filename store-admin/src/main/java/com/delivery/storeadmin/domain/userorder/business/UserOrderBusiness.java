@@ -2,7 +2,12 @@ package com.delivery.storeadmin.domain.userorder.business;
 
 import com.delivery.common.message.model.UserOrderMessage;
 import com.delivery.storeadmin.domain.sse.connection.SseConnectionPool;
+import com.delivery.storeadmin.domain.storemenu.converter.StoreMenuConverter;
+import com.delivery.storeadmin.domain.storemenu.service.StoreMenuService;
+import com.delivery.storeadmin.domain.userorder.controller.model.UserOrderDetailResponse;
+import com.delivery.storeadmin.domain.userorder.converter.UserOrderConverter;
 import com.delivery.storeadmin.domain.userorder.service.UserOrderService;
+import com.delivery.storeadmin.domain.userordermenu.service.UserOrderMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,10 +42,10 @@ public class UserOrderBusiness {
 
         // user order menu -> store menu
         var storeMenuResponseList = userOrderMenuList.stream()
-                .map(userOrderMenuEntity ->{
+                .map(userOrderMenuEntity ->{ //userOrderMenuEntity =>userOrderMenuList의 각 요소를 의미하고
                     return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenuId());
                 })
-                .map(storeMenuEntity ->{
+                .map(storeMenuEntity ->{ //storeMenuEntity =>storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenuId()) 조회한 StoreMenu 정보를 뜻한다
                     return storeMenuConverter.toResponse(storeMenuEntity);
                 })
                 .collect(Collectors.toList());
